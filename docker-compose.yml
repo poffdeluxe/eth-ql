@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  ql:
+    build: .
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "3001:3001"
+    depends_on:
+     - ethereum
+  ethereum:
+    image: harshjv/testrpc
+    entrypoint: testrpc -b 5
