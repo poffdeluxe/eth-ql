@@ -8,10 +8,15 @@ const typeDefs = `
     number: Int
     hash: String
     parentHash: String
+    miner: String,
+    size: Int,
+    difficulty: String,
+    timestamp: Int
   }
 
   type Query {
-    block(id: ID!): Block
+    block(id: ID!): Block,
+    latestBlock: Block
   }
 `;
 
