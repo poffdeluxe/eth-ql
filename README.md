@@ -1,6 +1,8 @@
 # eth-ql
 GraphQL bindings to explore the ETH blockchain
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Try it out
 GraphQL endpoint available at `https://eth-ql.herokuapp.com/graphql`
 

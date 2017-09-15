@@ -1,0 +1,5 @@
+{
+  "name": "eth-ql",
+  "description": "GraphQL bindings for the Ethereum blockchain",
+  "repository": "https://github.com/poffdeluxe/eth-ql"
+}
