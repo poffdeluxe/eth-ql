@@ -6,6 +6,21 @@ GraphQL endpoint available at `https://eth-ql.herokuapp.com/graphql`
 
 [Graphiql works too!](https://eth-ql.herokuapp.com/graphiql)
 
+**Example query:**
+```
+query {
+  latestBlock {
+    hash,
+    number,
+    transactions {
+      to,
+      from,
+      value
+    }
+  }
+}
+```
+
 ## Get Started
 `docker-compose up`
 
