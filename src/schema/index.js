@@ -5,18 +5,42 @@ const typeDefs = `
   type Block {
     id: ID!
 
-    number: Int
-    hash: String
+    number: Int!
+
+    hash: String!
     parentHash: String
-    miner: String,
-    size: Int,
-    difficulty: String,
+
+    miner: String
+    size: Int
+    difficulty: String
     timestamp: Int
+
+    transactions: [Transaction]
+  }
+
+  type Transaction {
+    id: ID!
+
+    hash: String!
+
+    blockHash: String!
+    block: Block!
+
+    from: String
+    to: String
+    value: String
+
+    gasPrice: String
+    gas: Int
+
+    input: String
   }
 
   type Query {
-    block(id: ID!): Block,
+    block(id: ID!): Block
     latestBlock: Block
+
+    transaction(id: ID!): Transaction
   }
 `;
 
