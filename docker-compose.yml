@@ -9,12 +9,16 @@ services:
       - "3001:3001"
     depends_on:
      - ethereum
+    env_file:
+      - ./config/env
   txworker:
     build: .
     volumes:
       - ./src:/app/src
     depends_on:
      - ethereum
+    env_file:
+      - ./config/env
     command:
       node src/txWorker.js
   ethereum:

@@ -7,7 +7,7 @@ const schema = require('./schema');
 
 // Setup web3
 // TODO: make HTTP provider url a env var
-var web3 = new Web3(new Web3.providers.HttpProvider("http://ethereum:8545"));
+var web3 = new Web3(new Web3.providers.HttpProvider(process.env.PROVIDER));
 
 var app = express();
 app.use('/graphql', bodyParser.json(), graphqlExpress({context: {web3}, schema}));
