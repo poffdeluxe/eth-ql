@@ -9,6 +9,14 @@ services:
       - "3001:3001"
     depends_on:
      - ethereum
+  txworker:
+    build: .
+    volumes:
+      - ./src:/app/src
+    depends_on:
+     - ethereum
+    command:
+      node src/txWorker.js
   ethereum:
     image: harshjv/testrpc
     entrypoint: testrpc -b 5

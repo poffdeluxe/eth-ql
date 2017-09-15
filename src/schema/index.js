@@ -5,20 +5,26 @@ const typeDefs = `
   type Block {
     id: ID!
 
-    number: Int
-    hash: String
+    number: Int!
+
+    hash: String!
     parentHash: String
+
     miner: String
     size: Int
     difficulty: String
     timestamp: Int
+
+    transactions: [Transaction]
   }
 
   type Transaction {
     id: ID!
 
-    hash: String
-    blockHash: String
+    hash: String!
+
+    blockHash: String!
+    block: Block!
 
     from: String
     to: String
