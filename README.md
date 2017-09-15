@@ -1,6 +1,11 @@
 # eth-ql
 GraphQL bindings to explore the ETH blockchain
 
+## Try it out
+GraphQL endpoint available at `https://eth-ql.herokuapp.com/graphql`
+
+[Graphiql works too!](https://eth-ql.herokuapp.com/graphiql)
+
 ## Get Started
 `docker-compose up`
 

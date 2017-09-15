@@ -6,7 +6,6 @@ const Web3 = require('web3');
 const schema = require('./schema');
 
 // Setup web3
-// TODO: make HTTP provider url a env var
 var web3 = new Web3(new Web3.providers.HttpProvider(process.env.PROVIDER));
 
 var app = express();
