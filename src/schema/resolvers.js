@@ -10,6 +10,10 @@ module.exports = {
 
     transaction: async (root, {id}, {web3}) => {
       return await web3.eth.getTransaction(id);
+    },
+
+    address: (root, {id}, {web3}) => {
+      return { id };
     }
   },
 
@@ -28,6 +32,24 @@ module.exports = {
 
     block: async ({blockHash}, data, {web3}) => {
       return await web3.eth.getBlock(blockHash);
+    },
+
+    value: (t, {unit}, {web3}) => {
+      return unit === 'WEI' ? t.value : web3.utils.fromWei(t.value, unit.toLowerCase());
+    },
+
+    toAddress: t => ({ id: t.to }),
+    fromAddress: t => ({ id: t.from })
+  },
+
+  Address: {
+    balance: async ({id}, {unit}, {web3}) => {
+      const bal = await web3.eth.getBalance(id);
+      return unit === 'WEI' ? bal : web3.utils.fromWei(bal, unit.toLowerCase());
+    },
+
+    code: async ({id}, data, {web3}) => {
+      return await web3.eth.getCode(id)
     }
   }
 };

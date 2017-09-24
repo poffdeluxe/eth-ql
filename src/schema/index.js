@@ -2,6 +2,12 @@ const { makeExecutableSchema } = require('graphql-tools');
 const resolvers = require('./resolvers');
 
 const typeDefs = `
+  enum CurUnit {
+    WEI
+    FINNEY
+    ETHER
+  }
+
   type Block {
     id: ID!
 
@@ -27,13 +33,24 @@ const typeDefs = `
     block: Block!
 
     from: String
+    fromAddress: Address
+
     to: String
-    value: String
+    toAddress: Address
+
+    value(unit: CurUnit = WEI): String
 
     gasPrice: String
-    gas: Int
+    gas: String
 
     input: String
+  }
+
+  type Address {
+    id: ID!
+
+    balance(unit: CurUnit = WEI): String
+    code: String
   }
 
   type Query {
@@ -41,7 +58,11 @@ const typeDefs = `
     latestBlock: Block
 
     transaction(id: ID!): Transaction
+
+    address(id: ID!): Address
   }
+
+
 `;
 
 module.exports = makeExecutableSchema({typeDefs, resolvers});
