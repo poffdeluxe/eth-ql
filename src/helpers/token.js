@@ -1,8 +1,6 @@
 const abi = require('human-standard-token-abi');
 
-const symbolToAddress = {
-  'ANT': '0x960b236A07cf122663c4303350609A66A7B288C0'
-};
+const symbolToAddress = require('./known_tokens.json');
 
 const addressToContract = {};
 

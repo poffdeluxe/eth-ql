@@ -74,10 +74,6 @@ module.exports = {
   },
 
   Token: {
-    address: ({id}, data, {web3}) => {
-      return { id };
-    },
-
     name: async ({id}, data, {web3}) => {
       return await getTokenName(web3, id);
     },
