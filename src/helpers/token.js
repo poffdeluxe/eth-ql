@@ -2,20 +2,12 @@ const abi = require('human-standard-token-abi');
 
 const symbolToAddress = require('./known_tokens.json');
 
-const addressToContract = {};
-
 function getTokenAddressFromSymbol(symbol) {
   return symbolToAddress[symbol];
 }
 
 function getTokenContract(web3, address) {
-  // If we've already loaded for this contract just re-use
-  if(addressToContract[address]) return addressToContract[address];
-
   const contract = new web3.eth.Contract(abi, address);
-
-  addressToContract[address] = contract;
-
   return contract;
 }
 
@@ -28,19 +20,19 @@ function getTokenContractFromSymbol(web3, symbol) {
 }
 
 function getTokenName(web3, address) {
-  const tokenContract = getTokenContract(web3, address)
+  const tokenContract = getTokenContract(web3, address);
 
   return tokenContract.methods.name().call();
 }
 
 function getTokenSupply(web3, address) {
-  const tokenContract = getTokenContract(web3, address)
+  const tokenContract = getTokenContract(web3, address);
 
   return tokenContract.methods.totalSupply().call();
 }
 
 function getTokenBalance(web3, address, targetAddress) {
-  const tokenContract = getTokenContract(web3, address)
+  const tokenContract = getTokenContract(web3, address);
 
   return tokenContract.methods.balanceOf(targetAddress).call();
 }
