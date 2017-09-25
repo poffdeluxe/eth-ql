@@ -86,7 +86,7 @@ module.exports = {
       return await getTokenSupply(web3, id);
     },
 
-    balance: async ({id}, {address, unit}, {web3}) => {
+    balanceOf: async ({id}, {address, unit}, {web3}) => {
       const bal = getTokenBalance(web3, id, address);
 
       return unit === 'WEI' ? bal : web3.utils.fromWei(bal, unit.toLowerCase());

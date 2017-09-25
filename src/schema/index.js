@@ -59,9 +59,9 @@ const typeDefs = `
 
     symbol: String
     name: String
-    supply: Int
+    supply: String
 
-    balance(address: String!, unit: CurUnit = WEI): String
+    balanceOf(address: String!, unit: CurUnit = WEI): String
   }
 
   type Query {

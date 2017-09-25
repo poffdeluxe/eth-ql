@@ -11,7 +11,10 @@ function getTokenAddressFromSymbol(symbol) {
 }
 
 function getTokenContract(web3, address) {
-  const contract = new web3.eth.contract(abi, address);
+  // If we've already loaded for this contract just re-use
+  if(addressToContract[address]) return addressToContract[address];
+
+  const contract = new web3.eth.Contract(abi, address);
 
   addressToContract[address] = contract;
 
@@ -23,28 +26,22 @@ function getTokenContractFromSymbol(web3, symbol) {
 
   const address = symbolToAddress[symbol];
 
-  // If we've already loaded for this contract just re-use
-  if(addressToContract[address]) return contract;
-
-  return getTokenContract(web3, address)
+  return getTokenContract(web3, address);
 }
 
 function getTokenName(web3, address) {
   const tokenContract = getTokenContract(web3, address)
 
-  return tokenContract.name.call()
+  return tokenContract.methods.name().call()
     .then((name) => {
       return name;
-    })
-    .reject(() => {
-      return null;
     });
 }
 
 function getTokenSupply(web3, address) {
   const tokenContract = getTokenContract(web3, address)
 
-  return tokenContract.totalSupply.call()
+  return tokenContract.methods.totalSupply().call()
     .then((supply) => {
       return supply;
     });
@@ -53,7 +50,7 @@ function getTokenSupply(web3, address) {
 function getTokenBalance(web3, address, targetAddress) {
   const tokenContract = getTokenContract(web3, address)
 
-  return tokenContract.balanceOf.call(targetAddress)
+  return tokenContract.methods.balanceOf(targetAddress).call()
     .then((balance) => {
       return balance;
     });
