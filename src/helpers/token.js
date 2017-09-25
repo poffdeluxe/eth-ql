@@ -32,28 +32,19 @@ function getTokenContractFromSymbol(web3, symbol) {
 function getTokenName(web3, address) {
   const tokenContract = getTokenContract(web3, address)
 
-  return tokenContract.methods.name().call()
-    .then((name) => {
-      return name;
-    });
+  return tokenContract.methods.name().call();
 }
 
 function getTokenSupply(web3, address) {
   const tokenContract = getTokenContract(web3, address)
 
-  return tokenContract.methods.totalSupply().call()
-    .then((supply) => {
-      return supply;
-    });
+  return tokenContract.methods.totalSupply().call();
 }
 
 function getTokenBalance(web3, address, targetAddress) {
   const tokenContract = getTokenContract(web3, address)
 
-  return tokenContract.methods.balanceOf(targetAddress).call()
-    .then((balance) => {
-      return balance;
-    });
+  return tokenContract.methods.balanceOf(targetAddress).call();
 }
 
 module.exports = {

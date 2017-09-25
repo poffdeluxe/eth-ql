@@ -55,7 +55,6 @@ const typeDefs = `
 
   type Token {
     id: ID!
-    address: Address
 
     symbol: String
     name: String
