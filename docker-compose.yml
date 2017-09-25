@@ -23,4 +23,4 @@ services:
       node src/txWorker.js
   ethereum:
     image: harshjv/testrpc
-    entrypoint: testrpc -b 5
+    entrypoint: testrpc -l 9000000000

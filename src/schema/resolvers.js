@@ -1,3 +1,10 @@
+const {
+  getTokenAddressFromSymbol,
+  getTokenName,
+  getTokenSupply,
+  getTokenBalance
+} = require('../helpers/token');
+
 module.exports = {
   Query: {
     block: async (root, {id}, {web3}) => {
@@ -14,6 +21,19 @@ module.exports = {
 
     address: (root, {id}, {web3}) => {
       return { id };
+    },
+
+    token: (root, {symbol}, {web3}) => {
+      return {
+        id: getTokenAddressFromSymbol(symbol),
+        symbol
+      };
+    },
+
+    tokenAt: (root, {address}, {web3}) => {
+      return {
+        id: address
+      };
     }
   },
 
@@ -51,5 +71,25 @@ module.exports = {
     code: async ({id}, data, {web3}) => {
       return await web3.eth.getCode(id)
     }
+  },
+
+  Token: {
+    address: ({id}, data, {web3}) => {
+      return { id };
+    },
+
+    name: async ({id}, data, {web3}) => {
+      return await getTokenName(web3, id);
+    },
+
+    supply: async ({id}, data, {web3}) => {
+      return await getTokenSupply(web3, id);
+    },
+
+    balance: async ({id}, {address, unit}, {web3}) => {
+      const bal = getTokenBalance(web3, id, address);
+
+      return unit === 'WEI' ? bal : web3.utils.fromWei(bal, unit.toLowerCase());
+    },
   }
 };

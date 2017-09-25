@@ -53,6 +53,17 @@ const typeDefs = `
     code: String
   }
 
+  type Token {
+    id: ID!
+    address: Address
+
+    symbol: String
+    name: String
+    supply: Int
+
+    balance(address: String!, unit: CurUnit = WEI): String
+  }
+
   type Query {
     block(id: ID!): Block
     latestBlock: Block
@@ -60,9 +71,10 @@ const typeDefs = `
     transaction(id: ID!): Transaction
 
     address(id: ID!): Address
+
+    token(symbol: String): Token
+    tokenAt(address: String): Token
   }
-
-
 `;
 
 module.exports = makeExecutableSchema({typeDefs, resolvers});
